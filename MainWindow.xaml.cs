@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WinRegistryTweaks.Reg;
@@ -27,6 +29,10 @@ namespace WinRegistryTweaks
 
             SetDefaultValues();
         }
+
+        // interesting stuff to take a look at:
+        // - https://gist.github.com/trongtinh1212/caa7d00188626d9188f69e781fee82d8
+        // - https://github.com/hellzerg/optimizer
 
         private void SetDefaultValues()
         {
@@ -70,6 +76,23 @@ namespace WinRegistryTweaks
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Unable to set registry value", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ForceChangesEvent(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.GetProcesses()
+                    .Where(p => p.ProcessName.ToLower().Equals("explorer"))
+                    .ToList()
+                    .ForEach(p => p.Kill());
+
+                Process.Start("explorer.exe");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unable to force Explorer restart", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -54,5 +54,12 @@
                 </CheckBox.ToolTip>
             </CheckBox>
         </Grid>
+        <!--Lame alignment because I'm bad with xaml-->
+        <Button HorizontalAlignment="left" VerticalAlignment="Bottom" Margin="10,130,10,10" Padding="3,3,3,3" Cursor="Hand" Click="ForceChangesEvent">
+            Force changes
+            <Button.ToolTip>
+                Forces explorer.exe to restart
+            </Button.ToolTip>
+        </Button>
     </StackPanel>
 </Window>
