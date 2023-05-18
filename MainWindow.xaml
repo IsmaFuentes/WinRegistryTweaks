@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinRegistryTweaks"
         mc:Ignorable="d"
-        Title="WinRegistryTweaks" Height="450" Width="350">
+        Title="WinRegistryTweaks" Height="450" Width="350" ResizeMode="NoResize">
     <StackPanel>
         <Label FontSize="16">General</Label>
         <Separator/>
