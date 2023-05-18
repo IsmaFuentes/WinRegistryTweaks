@@ -25,6 +25,21 @@ namespace WinRegistryTweaks.Reg
             }
         }
 
+        public static bool EntryExists(string keyPath, RegistryKeyType type)
+        {
+            switch (type)
+            {
+                case RegistryKeyType.Local:
+                    return Registry.LocalMachine.OpenSubKey(keyPath) != null;
+                case RegistryKeyType.CurrentConfig:
+                    return Registry.CurrentConfig.OpenSubKey(keyPath) != null;
+                case RegistryKeyType.CurrentUser:
+                    return Registry.CurrentUser.OpenSubKey(keyPath) != null;
+                default:
+                    return false;
+            }
+        }
+
         public object? GetEntryValue(string keyValue) => _entry.GetValue(keyValue);
 
         public void SetEntryValue(string keyValue, object value) => _entry.SetValue(keyValue, value);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinRegistryTweaks"
         mc:Ignorable="d"
-        Title="WinRegistryTweaks" Height="450" Width="350" ResizeMode="NoResize">
+        Title="WinRegistryTweaks" Height="450" Width="350" ResizeMode="CanMinimize">
     <StackPanel>
         <Label FontSize="16">General</Label>
         <Separator/>
@@ -48,7 +48,7 @@
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <CheckBox Click="CheckboxChecked" x:Name="chkDisableW11ContextMenu" Grid.Row="0" Grid.Column="0" Cursor="Hand">
-                Disable new context menu
+                Disable w11 context menu
                 <CheckBox.ToolTip>
                     Disables the new (and annoying) Windows 11 context menu.
                 </CheckBox.ToolTip>
