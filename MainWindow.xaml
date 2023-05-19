@@ -7,7 +7,19 @@
         mc:Ignorable="d"
         Title="WinRegistryTweaks" Height="450" Width="350" ResizeMode="CanMinimize">
     <StackPanel>
-        <Label FontSize="16">General</Label>
+        <ToolBar Background="White">
+            <!--<ToolBar.Resources>
+                <Style TargetType="{x:Type DockPanel}">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+            </ToolBar.Resources>-->
+            <Button Cursor="Hand" Click="ForceExplorerRestart">
+                Force changes
+                <Button.ToolTip>
+                    Forces explorer.exe to restart
+                </Button.ToolTip>
+            </Button>
+        </ToolBar>
         <Separator/>
         <Grid VerticalAlignment="Top" Margin="10,10,10,10">
                 <Grid.ColumnDefinitions>
@@ -54,12 +66,5 @@
                 </CheckBox.ToolTip>
             </CheckBox>
         </Grid>
-        <!--Lame alignment because I'm bad with xaml-->
-        <Button HorizontalAlignment="left" VerticalAlignment="Bottom" Margin="10,130,10,10" Padding="3,3,3,3" Cursor="Hand" Click="ForceChangesEvent">
-            Force changes
-            <Button.ToolTip>
-                Forces explorer.exe to restart
-            </Button.ToolTip>
-        </Button>
     </StackPanel>
 </Window>

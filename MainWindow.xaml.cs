@@ -94,7 +94,7 @@ namespace WinRegistryTweaks
             }
         }
 
-        private void ForceChangesEvent(object sender, RoutedEventArgs e)
+        private void ForceExplorerRestart(object sender, RoutedEventArgs e)
         {
             try
             {
