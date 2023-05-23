@@ -98,12 +98,17 @@ namespace WinRegistryTweaks
         {
             try
             {
-                Process.GetProcesses()
-                    .Where(p => p.ProcessName.ToLower().Equals("explorer"))
-                    .ToList()
-                    .ForEach(p => p.Kill());
+                var result = MessageBox.Show("This will restart Windows explorer process. Continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                Process.Start("explorer.exe");
+                if(result == MessageBoxResult.Yes)
+                {
+                    Process.GetProcesses()
+                        .Where(p => p.ProcessName.ToLower().Equals("explorer"))
+                        .ToList()
+                        .ForEach(p => p.Kill());
+
+                    Process.Start("explorer.exe");
+                }
             }
             catch(Exception ex)
             {
