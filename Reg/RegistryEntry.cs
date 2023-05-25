@@ -1,12 +1,13 @@
 ﻿using Microsoft.Win32;
+using System;
 
 namespace WinRegistryTweaks.Reg
 {
-    public class RegEntry
+    public class RegistryEntry : IDisposable
     {
         private RegistryKey _entry;
 
-        public RegEntry(string keyPath, RegistryKeyType type)
+        public RegistryEntry(string keyPath, RegistryKeyType type)
         {
             switch (type)
             {
@@ -24,6 +25,8 @@ namespace WinRegistryTweaks.Reg
                     break;
             }
         }
+
+        public void Dispose() => _entry.Dispose();
 
         public static bool EntryExists(string keyPath, RegistryKeyType type)
         {

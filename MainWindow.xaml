@@ -14,7 +14,7 @@
                 </Style>
             </ToolBar.Resources>-->
             <Button Cursor="Hand" Click="ForceExplorerRestart">
-                Force changes
+                Restart explorer
                 <Button.ToolTip>
                     Forces explorer.exe to restart
                 </Button.ToolTip>
@@ -26,6 +26,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
@@ -46,6 +47,12 @@
                 Disable web search
                 <CheckBox.ToolTip>
                     Disables web search results in search bar
+                </CheckBox.ToolTip>
+            </CheckBox>
+            <CheckBox Click="CheckboxChecked" x:Name="chkDisableFastStartup" Grid.Row="3" Grid.Column="0" Cursor="Hand">
+                Disable fast startup
+                <CheckBox.ToolTip>
+                    Disables Windows fast startup (hibernate mode)
                 </CheckBox.ToolTip>
             </CheckBox>
         </Grid>
