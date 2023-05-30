@@ -16,7 +16,7 @@
             <Button Cursor="Hand" Click="ForceExplorerRestart">
                 Restart explorer
                 <Button.ToolTip>
-                    Forces explorer.exe to restart
+                    Restarts explorer.exe in order to force some changes to apply.
                 </Button.ToolTip>
             </Button>
         </ToolBar>
@@ -29,7 +29,7 @@
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <CheckBox Click="CheckboxChecked" x:Name="chkDisableDriverSearch" Grid.Row="0" Grid.Column="0" Cursor="Hand">
                 Disable driver searching
