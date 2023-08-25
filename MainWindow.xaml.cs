@@ -16,22 +16,14 @@ namespace WinRegistryTweaks
             SetDefaultValues();
         }
 
-        // interesting stuff to take a look at:
-        // - https://gist.github.com/trongtinh1212/caa7d00188626d9188f69e781fee82d8
-        // - https://github.com/hellzerg/optimizer
-        // - https://github.com/svenmauch/WinSlap/blob/master/WinSlap/Slapper.cs
-        // - https://github.com/spinda/Destroy-Windows-10-Spying/tree/master/DWS
-
         private void SetDefaultValues()
         {
-            // General
             chkDisableDriverSearch.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching", "SearchOrderConfig", RegistryKeyType.Local, 1);
             chkDisableWIDriverUpdates.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate", "ExcludeWUDriversInQualityUpdate", RegistryKeyType.Local, 1);
             chkDisableWebSearch.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", RegistryKeyType.CurrentUser, 1);
             chkDisableFastStartup.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SYSTEM\CurrentControlSet\Control\Session Manager\Power", "HiberbootEnabled", RegistryKeyType.Local, 0);
 
-            // Win11
-            if(WinUtils.IsWindows11)
+            if (WinUtils.IsWindows11)
             {
                 if (RegistryEditor.RegistryEntryExists(@"SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InProcServer32", RegistryKeyType.CurrentUser))
                 {
@@ -85,7 +77,12 @@ namespace WinRegistryTweaks
 
             if (enabled == true)
             {
-                RegistryEditor.SetRegistryValue(@"SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InProcServer32", "", RegistryKeyType.CurrentUser, "", Microsoft.Win32.RegistryValueKind.String);
+                string subkey = @"SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}";
+
+                using (var key = new RegistryEntry(subkey, RegistryKeyType.CurrentUser))
+                {
+                    RegistryEditor.SetRegistryValue(@$"{subkey}\InProcServer32", "", RegistryKeyType.CurrentUser, "", Microsoft.Win32.RegistryValueKind.String);
+                }
             }
             else
             {
@@ -98,8 +95,8 @@ namespace WinRegistryTweaks
             try
             {
                 var dialogResult = MessageBox.Show("This action will restart the Windows explorer process. Continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                if(dialogResult == MessageBoxResult.Yes)
+                
+                if (dialogResult == MessageBoxResult.Yes)
                 {
                     Process.GetProcesses()
                         .Where(p => p.ProcessName.ToLower().Equals("explorer"))
@@ -109,11 +106,17 @@ namespace WinRegistryTweaks
                     Process.Start("explorer.exe");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Unable to force Explorer restart", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        // interesting stuff to take a look at:
+        // - https://gist.github.com/trongtinh1212/caa7d00188626d9188f69e781fee82d8
+        // - https://github.com/hellzerg/optimizer
+        // - https://github.com/svenmauch/WinSlap/blob/master/WinSlap/Slapper.cs
+        // - https://github.com/spinda/Destroy-Windows-10-Spying/tree/master/DWS
 
         //private void DisableTelemetry()
         //{
