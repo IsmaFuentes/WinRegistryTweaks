@@ -18,22 +18,14 @@ namespace WinRegistryTweaks
 
         private void SetDefaultValues()
         {
+            // Windows 10/11
             chkDisableDriverSearch.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching", "SearchOrderConfig", RegistryKeyType.Local, 1);
             chkDisableWIDriverUpdates.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate", "ExcludeWUDriversInQualityUpdate", RegistryKeyType.Local, 1);
             chkDisableWebSearch.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", RegistryKeyType.CurrentUser, 1);
             chkDisableFastStartup.IsChecked = RegistryEditor.IsRegistryKeyEnabled(@"SYSTEM\CurrentControlSet\Control\Session Manager\Power", "HiberbootEnabled", RegistryKeyType.Local, 0);
 
-            if (WinUtils.IsWindows11)
-            {
-                if (RegistryEditor.RegistryEntryExists(@"SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InProcServer32", RegistryKeyType.CurrentUser))
-                {
-                    chkDisableW11ContextMenu.IsChecked = true;
-                }
-            }
-            else
-            {
-                chkDisableW11ContextMenu.IsEnabled = false;
-            }
+            // Windows 11
+            chkDisableW11ContextMenu.IsChecked = RegistryEditor.RegistryEntryExists(@"SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InProcServer32", RegistryKeyType.CurrentUser);
         }
 
         private void CheckboxChecked(object sender, RoutedEventArgs e)
