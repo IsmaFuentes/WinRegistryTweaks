@@ -5,73 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinRegistryTweaks"
         mc:Ignorable="d"
-        Title="WinRegistryTweaks" Height="450" Width="350" ResizeMode="CanMinimize">
+        Title="WinRegistryTweaks" Height="500" Width="375" ResizeMode="CanMinimize">
     <StackPanel>
-        <ToolBar Background="White">
-            <!--<ToolBar.Resources>
-                <Style TargetType="{x:Type DockPanel}">
-                    <Setter Property="HorizontalAlignment" Value="Right" />
-                </Style>
-            </ToolBar.Resources>-->
-            <Button Cursor="Hand" Click="ForceExplorerRestart">
-                Restart explorer
-                <Button.ToolTip>
-                    Restarts explorer.exe in order to force some changes to apply.
-                </Button.ToolTip>
-            </Button>
-        </ToolBar>
+      <ToolBar Background="White">
+        <Button Cursor="Hand" Command="{Binding ForceExplorerRestartCommand}">
+          Force changes
+          <Button.ToolTip>
+            Restarts the explorer process in order to force changes to apply.
+          </Button.ToolTip>
+        </Button>
+      </ToolBar>
         <Separator/>
-        <Grid VerticalAlignment="Top" Margin="10,10,10,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
-            <CheckBox Click="CheckboxChecked" x:Name="chkDisableDriverSearch" Grid.Row="0" Grid.Column="0" Cursor="Hand">
-                Disable driver searching
-                <CheckBox.ToolTip>
-                    Prevents Windows from searching for third party drivers.
-                </CheckBox.ToolTip>
-            </CheckBox>
-            <CheckBox Click="CheckboxChecked" x:Name="chkDisableWIDriverUpdates" Grid.Row="1" Grid.Column="0" Cursor="Hand">
-                Disable WU drivers in quality updates
-                <CheckBox.ToolTip>
-                    Prevents Windows from including third party packaged drivers in quality updates.
-                </CheckBox.ToolTip>
-            </CheckBox>
-            <CheckBox Click="CheckboxChecked" x:Name="chkDisableWebSearch" Grid.Row="2" Grid.Column="0" Cursor="Hand">
-                Disable web search
-                <CheckBox.ToolTip>
-                    Disables web search results in search bar
-                </CheckBox.ToolTip>
-            </CheckBox>
-            <CheckBox Click="CheckboxChecked" x:Name="chkDisableFastStartup" Grid.Row="3" Grid.Column="0" Cursor="Hand">
-                Disable fast startup
-                <CheckBox.ToolTip>
-                    Disables Windows fast startup (hibernate mode)
-                </CheckBox.ToolTip>
-            </CheckBox>
-        </Grid>
-        <Label FontSize="16">Windows 11</Label>
-        <Separator/>
-        <Grid VerticalAlignment="Top" Margin="10,10,10,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
-            <CheckBox Click="CheckboxChecked" x:Name="chkDisableW11ContextMenu" Grid.Row="0" Grid.Column="0" Cursor="Hand">
-                Disable w11 context menu
-                <CheckBox.ToolTip>
-                    Disables the new (and annoying) Windows 11 context menu.
-                </CheckBox.ToolTip>
-            </CheckBox>
-        </Grid>
+      <StackPanel VerticalAlignment="Top" Margin="10,10,10,10">
+        <CheckBox Grid.Row="0" Grid.Column="0" Cursor="Hand" IsChecked="{Binding DriverSearchkingKeyEnabled}">
+          Disable driver searching
+          <CheckBox.ToolTip>
+            Prevents Windows from searching for third party drivers.
+          </CheckBox.ToolTip>
+        </CheckBox>
+        <CheckBox Grid.Row="1" Grid.Column="0" Cursor="Hand" IsChecked="{Binding WuDriversInQualityUpdateKeyEnabled}">
+          Disable WU drivers in quality updates
+          <CheckBox.ToolTip>
+            Prevents Windows from including third party packaged drivers in quality updates.
+          </CheckBox.ToolTip>
+        </CheckBox>
+        <CheckBox Grid.Row="2" Grid.Column="0" Cursor="Hand" IsChecked="{Binding WebSearchKeyEnabled}">
+          Disable web search
+          <CheckBox.ToolTip>
+            Disables web search results in search bar
+          </CheckBox.ToolTip>
+        </CheckBox>
+        <CheckBox Grid.Row="3" Grid.Column="0" Cursor="Hand" IsChecked="{Binding FastStartupKeyEnabled}">
+          Disable fast startup
+          <CheckBox.ToolTip>
+            Disables Windows fast startup (hibernate mode)
+          </CheckBox.ToolTip>
+        </CheckBox>
+        <CheckBox Grid.Row="4" Grid.Column="0" Cursor="Hand" IsChecked="{Binding ContextMenuKeyEnabled}">
+          Disable w11 context menu
+          <CheckBox.ToolTip>
+            Disables the new (and annoying) Windows 11 context menu.
+          </CheckBox.ToolTip>
+        </CheckBox>
+      </StackPanel>
     </StackPanel>
 </Window>
