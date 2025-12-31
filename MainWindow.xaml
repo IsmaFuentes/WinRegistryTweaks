@@ -4,18 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinRegistryTweaks"
+        xmlns:material="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
         Title="WinRegistryTweaks" Height="500" Width="375" ResizeMode="CanMinimize">
     <StackPanel>
-      <ToolBar Background="White">
-        <Button Cursor="Hand" Command="{Binding ForceExplorerRestartCommand}">
-          Force changes
+      <StackPanel Margin="5">
+        <Button Cursor="Hand" 
+                Command="{Binding ForceExplorerRestartCommand}" 
+                Content="{material:MaterialIconExt Kind=Restart, Size=18}">
           <Button.ToolTip>
             Restarts the explorer process in order to force changes to apply.
           </Button.ToolTip>
         </Button>
-      </ToolBar>
-        <Separator/>
+      </StackPanel>
+      <Separator/>
       <StackPanel VerticalAlignment="Top" Margin="10,10,10,10">
         <CheckBox Grid.Row="0" Grid.Column="0" Cursor="Hand" IsChecked="{Binding DriverSearchkingKeyEnabled}">
           Disable driver searching
